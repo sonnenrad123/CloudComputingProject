@@ -1,0 +1,53 @@
+﻿@model AgencijaWeb.Models.Korisnik
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Korisnik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prezime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ime)
+        @Html.HiddenFor(model => model.prezime)
+        @Html.HiddenFor(model => model.username)
+       
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

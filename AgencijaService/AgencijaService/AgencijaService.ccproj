@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>2.9</ProductVersion>
+    <ProjectGuid>eca395e0-ce34-4213-8401-c114a77b6f4a</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AgencijaService</RootNamespace>
+    <AssemblyName>AgencijaService</AssemblyName>
+    <StartDevelopmentStorage>True</StartDevelopmentStorage>
+    <Name>AgencijaService</Name>
+    <UseWebProjectPorts>False</UseWebProjectPorts>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Items for the project -->
+  <ItemGroup>
+    <ServiceDefinition Include="ServiceDefinition.csdef" />
+    <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AgencijaWeb\AgencijaWeb.csproj">
+      <Name>AgencijaWeb</Name>
+      <Project>{314ae1a4-5eca-4ffc-aa88-bffc9404ba79}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>AgencijaWeb</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Name>Logger</Name>
+      <Project>{1ea0452d-9976-4434-bf3b-c9a02078347e}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>Logger</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\ReaderWorkerRole\ReaderWorkerRole.csproj">
+      <Name>ReaderWorkerRole</Name>
+      <Project>{111f5ba8-2dee-41da-b754-90279843f1a5}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>ReaderWorkerRole</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+    <ProjectReference Include="..\WriterWorkerRole\WriterWorkerRole.csproj">
+      <Name>WriterWorkerRole</Name>
+      <Project>{2bc451d8-88df-4b5a-b441-091a74d612fc}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>WriterWorkerRole</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AgencijaWebContent\" />
+    <Folder Include="LoggerContent\" />
+    <Folder Include="ReaderWorkerRoleContent\" />
+    <Folder Include="WriterWorkerRoleContent\" />
+  </ItemGroup>
+  <ItemGroup>
+    <DiagnosticsConfiguration Include="AgencijaWebContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="LoggerContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="ReaderWorkerRoleContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="WriterWorkerRoleContent\diagnostics.wadcfgx" />
+  </ItemGroup>
+  <!-- Import the target files for this project template -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.9\</CloudExtensionsDir>
+  </PropertyGroup>
+  <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
+</Project>

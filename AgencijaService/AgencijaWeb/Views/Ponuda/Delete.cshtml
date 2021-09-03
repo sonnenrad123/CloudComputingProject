@@ -1,0 +1,54 @@
+﻿@model AgencijaWeb.Models.Ponuda
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Ponuda</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cena)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.ime)
+        @Html.HiddenFor(model => model.cena)
+        @Html.HiddenFor(model => model.opis)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
